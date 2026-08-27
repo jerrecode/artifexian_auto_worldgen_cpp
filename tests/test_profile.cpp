@@ -1,0 +1,5 @@
+#include "test.hpp"
+#include "worldgen/profile.hpp"
+#include <filesystem>
+#include <fstream>
+WG_TEST(profile_supports_named_moons_exotic_atmosphere_and_volatiles){using namespace worldgen;const auto path=std::filesystem::temp_directory_path()/"wg-titan.yml";std::ofstream o(path);o<<"resolution:\n  width: 128\n  height: 64\nstar:\n  mass_solar: 1\n  luminosity_solar: 1\n  uv_relative_earth: 0.08\nworld:\n  mass_earth: 0.0225\n  radius_earth: 0.404\n  orbital_distance_au: 9.58\natmosphere:\n  surface_pressure_pa: 150000\n  composition:\n    N2: 0.95\n    CH4: 0.05\nvolatiles:\n  CH4: 2e18\n  C2H6: 5e17\norbit:\n  is_moon: true\n  host_mass_earth: 95.16\n  host_semimajor_axis_km: 1221870\n  host_eccentricity: 0.0288\nmoons:\n  Tiny:\n    mass_earth: 1e-6\n    radius_km: 100\n    semimajor_axis_km: 4000\n    eccentricity: 0.01\ngeology:\n  regime: cryogenic\nrefinement:\n  levels: 2\n  scale: 2\n";o.close();const auto p=PlanetProfile::load_yaml(path);WG_CHECK(p.orbit.is_moon);WG_CHECK(p.orbit.moons.size()==1);WG_CHECK(p.volatiles.size()==2);WG_NEAR(p.atmosphere.mole_fraction.at("CH4"),0.05,1e-12);WG_CHECK(p.refinement.levels==2);std::filesystem::remove(path);}
