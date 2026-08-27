@@ -1,0 +1,7 @@
+/build*/
+CMakeUserPresets.json
+*.prof
+*.log
+*.jsonl
+world-out/
+.DS_Store
