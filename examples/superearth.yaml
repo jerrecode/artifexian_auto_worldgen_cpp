@@ -1,0 +1,51 @@
+# Demonstration rocky super-Earth with two moons.
+seed: 46081991
+resolution:
+  width: 128
+  height: 64
+star:
+  mass_solar: 1.05
+  luminosity_solar: 1.15
+  uv_relative_earth: 1.08
+world:
+  mass_earth: 4.8
+  radius_earth: 1.55
+  age_gyr: 4.2
+  orbital_distance_au: 1.08
+  rotation_hours: 29.5
+  axial_tilt_deg: 18.0
+  bond_albedo: 0.31
+atmosphere:
+  surface_pressure_pa: 180000
+  composition:
+    N2: 0.915
+    O2: 0.060
+    Ar: 0.010
+    CO2: 0.014
+    H2O: 0.001
+volatiles:
+  H2O: 4.0e21
+  CO2: 2.5e19
+moons:
+  Selene:
+    mass_earth: 0.020
+    radius_km: 2100
+    semimajor_axis_km: 430000
+    eccentricity: 0.018
+  Nysa:
+    mass_earth: 0.0045
+    radius_km: 1050
+    semimajor_axis_km: 790000
+    eccentricity: 0.035
+geology:
+  regime: auto
+  relief_scale: 1.35
+volatile_cycle:
+  ice_trapping_efficiency: 0.58
+geomorphology:
+  erosion_iterations: 5
+noise:
+  octaves: 7
+  persistence: 0.56
+  lacunarity: 2.0
+  domain_warp_strength: 0.32

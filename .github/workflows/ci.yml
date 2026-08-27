@@ -16,6 +16,25 @@ jobs:
       - run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
       - run: cmake --build build --parallel 2
       - run: ctest --test-dir build --output-on-failure
+      - name: Generate requested sample worlds
+        if: matrix.compiler == 'gcc'
+        run: |
+          mkdir -p sample-output
+          ./build/worldgen --generate examples/superearth.yaml --out sample-output/superearth --no-progress-bar --verbose | tee sample-output/superearth-run.txt
+          ./build/worldgen --generate examples/titan_like.yaml --out sample-output/titan-like --no-progress-bar --verbose | tee sample-output/titan-like-run.txt
+          echo '--- super-Earth summary ---'
+          cat sample-output/superearth/summary.json
+          echo '--- Titan-like summary ---'
+          cat sample-output/titan-like/summary.json
+          echo '--- files ---'
+          find sample-output -type f -printf '%p %s bytes\n' | sort
+      - name: Upload sample worlds
+        if: matrix.compiler == 'gcc'
+        uses: actions/upload-artifact@v4
+        with:
+          name: sample-worlds-${{ github.sha }}
+          path: sample-output
+          if-no-files-found: error
   sanitizers:
     runs-on: ubuntu-latest
     steps:

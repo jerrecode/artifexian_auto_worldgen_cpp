@@ -1,0 +1,50 @@
+# Titan-like cold hydrocarbon world orbiting a Saturn-mass giant.
+seed: 77194403
+resolution:
+  width: 128
+  height: 64
+star:
+  mass_solar: 1.0
+  luminosity_solar: 1.0
+  uv_relative_earth: 0.011
+world:
+  mass_earth: 0.0225
+  radius_earth: 0.4041
+  age_gyr: 4.5
+  orbital_distance_au: 9.58
+  rotation_hours: 382.68
+  axial_tilt_deg: 0.3
+  bond_albedo: 0.29
+atmosphere:
+  surface_pressure_pa: 146700
+  composition:
+    N2: 0.984
+    CH4: 0.014
+    H2: 0.001
+    Ar: 0.0006
+    C2H6: 0.0004
+volatiles:
+  H2O: 7.0e21
+  CH4: 1.2e18
+  C2H6: 2.0e18
+  NH3: 8.0e19
+orbit:
+  is_moon: true
+  host_mass_earth: 95.159
+  host_radius_km: 58232
+  host_semimajor_axis_km: 1221870
+  host_eccentricity: 0.0288
+  world_k2: 0.60
+  world_quality_factor: 100
+geology:
+  regime: cryogenic
+  relief_scale: 0.55
+volatile_cycle:
+  ice_trapping_efficiency: 0.82
+geomorphology:
+  erosion_iterations: 4
+noise:
+  octaves: 7
+  persistence: 0.57
+  lacunarity: 2.0
+  domain_warp_strength: 0.28
